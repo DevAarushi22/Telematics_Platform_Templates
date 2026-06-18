@@ -1,0 +1,50 @@
+{{/*
+=========================================================
+CONFIGMAP TEMPLATE
+=========================================================
+
+CURRENT STATUS:
+Skipped in v1 of the platform template.
+
+WHY?
+
+The existing Telematics platform currently uses:
+
+- Application settings
+- Environment variables
+- Kubernetes Secrets
+
+Most services do not currently consume ConfigMaps.
+
+Adding ConfigMaps now would introduce complexity
+without providing significant value during migration.
+
+FUTURE USE CASES:
+
+1. Non-sensitive application configuration
+   - Feature flags
+   - Service URLs
+   - Cache settings
+   - Retry settings
+
+2. Shared configuration across services
+
+3. Environment-specific settings
+
+EXAMPLE:
+
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: auth-config
+
+data:
+  LOG_LEVEL: Information
+  RETRY_COUNT: "3"
+
+TARGET PHASE:
+Phase 2 / Service Standardization
+
+=========================================================
+*/}}

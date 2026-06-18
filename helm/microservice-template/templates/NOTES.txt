@@ -1,0 +1,75 @@
+=========================================================
+Telematics Platform Service Deployment
+=========================================================
+
+Release:
+{{ .Release.Name }}
+
+Namespace:
+{{ .Values.service.namespace }}
+
+Service:
+{{ .Values.service.name }}
+
+Environment:
+{{ .Values.environment.name }}
+
+Image:
+{{ .Values.image.repository }}:{{ .Values.image.tag }}
+
+---------------------------------------------------------
+Ingress
+---------------------------------------------------------
+
+{{- if .Values.ingress.enabled }}
+
+Host:
+https://{{ .Values.ingress.host }}
+
+TLS Secret:
+{{ .Values.ingress.tls.secretName }}
+
+{{- else }}
+
+Ingress disabled
+
+{{- end }}
+
+---------------------------------------------------------
+Verification Commands
+---------------------------------------------------------
+
+Check deployment:
+
+kubectl get deployment {{ include "microservice.fullname" . }} -n {{ .Values.service.namespace }}
+
+Check pods:
+
+kubectl get pods -n {{ .Values.service.namespace }}
+
+Check service:
+
+kubectl get svc {{ include "microservice.fullname" . }} -n {{ .Values.service.namespace }}
+
+Check ingress:
+
+kubectl get ingress -n {{ .Values.service.namespace }}
+
+Check logs:
+
+kubectl logs deployment/{{ include "microservice.fullname" . }} -n {{ .Values.service.namespace }}
+
+---------------------------------------------------------
+Platform Components Required
+---------------------------------------------------------
+
+✓ ingress-nginx
+✓ cert-manager
+
+Optional:
+
+✓ Redis
+✓ JWT Secret
+✓ Password Pepper Secret
+
+=========================================================

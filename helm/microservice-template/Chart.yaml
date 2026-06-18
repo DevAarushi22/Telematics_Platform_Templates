@@ -1,0 +1,17 @@
+apiVersion: v2 
+# Modern Helm chart format
+
+name: microservice-template 
+# Name of the Helm chart
+
+description: Generic Helm chart for Telematics Platform microservices 
+#purpose of the Helm chart
+
+type: application 
+# there are 2 types of Helm charts: application and library. Application charts are used to deploy applications, while library charts are used to share common templates and functions across multiple charts.
+
+version: 1.0.0 
+# version of the Helm chart itself. This is used by Helm to determine if a new version of the chart is available for upgrade.
+
+appVersion: "1.0.0" 
+# version of the application being deployed. This is used to track the version of the application that is being deployed by the Helm chart. It is not used by Helm for any functionality, but it can be useful for tracking the version of the application being deployed.

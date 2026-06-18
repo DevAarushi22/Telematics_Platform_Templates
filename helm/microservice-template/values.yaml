@@ -1,0 +1,72 @@
+# Default values for the microservice-template chart.
+# This is a YAML-formatted file where you define default values for your Helm chart.
+
+image:
+  repository: ""
+  tag: latest
+  pullPolicy: Always
+
+service:
+  name: ""
+  namespace: apps
+
+  port: 80
+  targetPort: 80
+
+ingress:
+  enabled: true
+
+  className: nginx
+
+  host: ""
+
+  tls:
+    secretName: ""
+
+health:
+  enabled: true
+
+  path: /health
+
+  liveness:
+    initialDelaySeconds: 30
+    periodSeconds: 10
+
+  readiness:
+    initialDelaySeconds: 15
+    periodSeconds: 5
+
+environment:
+  name: Development
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+  limits:
+    cpu: 250m
+    memory: 256Mi
+
+redis:
+  enabled: false
+
+  host: redis-master.redis.svc.cluster.local
+  port: 6379
+
+  secretName: redis-auth
+  passwordKey: redis-password
+
+jwt:
+  enabled: false
+
+  secretName: jwt-secret
+  key: jwt-secret
+
+passwordPepper:
+  enabled: false
+
+  secretName: password-pepper
+  key: password-pepper
+
+env: {}

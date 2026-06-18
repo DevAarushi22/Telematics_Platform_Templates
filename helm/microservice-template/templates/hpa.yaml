@@ -1,0 +1,47 @@
+{{/*
+=========================================================
+HORIZONTAL POD AUTOSCALER (HPA)
+=========================================================
+
+CURRENT STATUS:
+Skipped in v1 of the platform template.
+
+WHY?
+
+Current platform runs:
+
+- 1 replica per service
+- No autoscaling
+- No resource baselines established
+
+Before enabling HPA we must first:
+
+1. Define CPU requests/limits
+2. Define Memory requests/limits
+3. Collect production metrics
+4. Establish scaling thresholds
+
+FUTURE USE CASE:
+
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+
+spec:
+  minReplicas: 1
+  maxReplicas: 5
+
+  metrics:
+    - type: Resource
+
+      resource:
+        name: cpu
+
+        target:
+          type: Utilization
+          averageUtilization: 70
+
+TARGET PHASE:
+Phase 4 - Scaling & Optimization
+
+=========================================================
+*/}}
