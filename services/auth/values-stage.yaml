@@ -1,0 +1,52 @@
+replicaCount: 1
+
+image:
+  repository: telematicsplatform.azurecr.io/telematicswebauth
+  tag: "latest"
+  pullPolicy: Always
+
+imagePullSecrets:
+  - telematicsplatform11958c78-auth
+
+service:
+  name: auth
+  namespace: apps
+
+  port: 80
+  targetPort: 3000
+
+ingress:
+  enabled: true
+
+  className: nginx
+
+  host: stageauth.nueralia.ai
+
+  tls:
+    secretName: stageauth-tls
+
+environment:
+  name: Stage
+
+health:
+  enabled: false
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+  limits:
+    cpu: 250m
+    memory: 256Mi
+
+redis:
+  enabled: false
+
+jwt:
+  enabled: false
+
+passwordPepper:
+  enabled: false
+
+env: {}

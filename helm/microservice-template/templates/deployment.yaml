@@ -30,9 +30,19 @@ spec:
         app.kubernetes.io/name: {{ include "microservice.name" . }}
 
     spec:
-      imagePullSecrets:
-        - name: {{ .Values.image.pullSecret }}
+
+# {{- if .Values.imagePullSecrets }}
+#       imagePullSecrets:
+# {{- range .Values.imagePullSecrets }}
+#         - name: {{ . }}
+# {{- end }}
+# {{- end }}
+
+# imagePullSecrets intentionally disabled.
+# AKS uses AcrPull role assignment against environment ACR.
+
       serviceAccountName: {{ include "microservice.fullname" . }}
+
       containers:
         - name: {{ .Values.service.name }}
 
@@ -42,7 +52,7 @@ spec:
           ports:
             - containerPort: {{ .Values.service.targetPort }}
 
-          {{- if .Values.health.enabled }}
+{{- if .Values.health.enabled }}
 
           livenessProbe:
             httpGet:
@@ -60,7 +70,7 @@ spec:
             initialDelaySeconds: {{ .Values.health.readiness.initialDelaySeconds }}
             periodSeconds: {{ .Values.health.readiness.periodSeconds }}
 
-          {{- end }}
+{{- end }}
 
           resources:
 {{ toYaml .Values.resources | indent 12 }}
@@ -69,7 +79,7 @@ spec:
             - name: ASPNETCORE_ENVIRONMENT
               value: "{{ .Values.environment.name }}"
 
-            {{- if .Values.redis.enabled }}
+{{- if .Values.redis.enabled }}
             - name: REDIS_HOST
               value: "{{ .Values.redis.host }}"
 
@@ -81,25 +91,25 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.redis.secretName }}
                   key: {{ .Values.redis.passwordKey }}
-            {{- end }}
+{{- end }}
 
-            {{- if .Values.jwt.enabled }}
+{{- if .Values.jwt.enabled }}
             - name: JWT_SECRET
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.jwt.secretName }}
                   key: {{ .Values.jwt.key }}
-            {{- end }}
+{{- end }}
 
-            {{- if .Values.passwordPepper.enabled }}
+{{- if .Values.passwordPepper.enabled }}
             - name: PASSWORD_PEPPER
               valueFrom:
                 secretKeyRef:
                   name: {{ .Values.passwordPepper.secretName }}
                   key: {{ .Values.passwordPepper.key }}
-            {{- end }}
+{{- end }}
 
-            {{- range $key, $value := .Values.env }}
+{{- range $key, $value := .Values.env }}
             - name: {{ $key }}
               value: "{{ $value }}"
-            {{- end }}
+{{- end }}
