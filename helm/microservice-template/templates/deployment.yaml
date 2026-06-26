@@ -76,8 +76,8 @@ spec:
 {{ toYaml .Values.resources | indent 12 }}
 
           env:
-            - name: ASPNETCORE_ENVIRONMENT
-              value: "{{ .Values.environment.name }}"
+            # - name: ASPNETCORE_ENVIRONMENT
+            #   value: "{{ .Values.environment.name }}"
 
 {{- if .Values.redis.enabled }}
             - name: REDIS_HOST

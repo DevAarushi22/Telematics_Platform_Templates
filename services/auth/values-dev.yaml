@@ -29,7 +29,16 @@ environment:
   name: Development
 
 health:
-  enabled: false
+  enabled: true
+  path: /health
+
+  liveness:
+    initialDelaySeconds: 30
+    periodSeconds: 10
+
+  readiness:
+    initialDelaySeconds: 10
+    periodSeconds: 5
 
 resources:
   requests:

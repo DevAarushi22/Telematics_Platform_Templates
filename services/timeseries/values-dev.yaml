@@ -1,0 +1,27 @@
+replicaCount: 1
+image:
+  repository: telematicsplatform.azurecr.io/telematicstimeseries
+  tag: '3526'
+  pullPolicy: Always
+imagePullSecrets:
+- telematicsacrdevcin01
+service:
+  name: timeseries-deployment
+  namespace: apps
+  type: ClusterIP
+  port: 80
+  targetPort: 80
+environment:
+  name: Development
+ingress:
+  enabled: true
+  className: nginx
+  host: timeseries.nueralia.ai
+  tls:
+    enabled: true
+    secretName: nueralia-dev-cert-tls
+health:
+  enabled: false
+resources: {}
+env:
+  ASPNETCORE_ENVIRONMENT: Development

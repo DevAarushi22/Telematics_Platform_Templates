@@ -1,0 +1,26 @@
+replicaCount: 1
+image:
+  repository: telematicsplatform.azurecr.io/telematicswebreseller
+  tag: '3483'
+  pullPolicy: Always
+imagePullSecrets:
+- telematicsacrdevcin01
+service:
+  name: reseller-deployment
+  namespace: apps
+  type: ClusterIP
+  port: 80
+  targetPort: 80
+environment:
+  name: Development
+ingress:
+  enabled: true
+  className: nginx
+  host: reseller.nueralia.ai
+  tls:
+    enabled: true
+    secretName: nueralia-dev-cert-tls
+health:
+  enabled: false
+resources: {}
+env: {}

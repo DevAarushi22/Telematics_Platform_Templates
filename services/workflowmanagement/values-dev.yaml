@@ -1,0 +1,27 @@
+replicaCount: 1
+image:
+  repository: telematicsplatform.azurecr.io/telematicsworkflowmanagement
+  tag: '1474'
+  pullPolicy: Always
+imagePullSecrets:
+- telematicsacrdevcin01
+service:
+  name: workflowmanagement-deployment
+  namespace: apps
+  type: ClusterIP
+  port: 80
+  targetPort: 80
+environment:
+  name: Development
+ingress:
+  enabled: true
+  className: nginx
+  host: workflowmanagement.nueralia.ai
+  tls:
+    enabled: true
+    secretName: nueralia-dev-cert-tls
+health:
+  enabled: false
+resources: {}
+env:
+  ASPNETCORE_ENVIRONMENT: Development

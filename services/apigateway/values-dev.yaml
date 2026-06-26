@@ -1,0 +1,27 @@
+replicaCount: 1
+image:
+  repository: telematicsplatform.azurecr.io/telematicsapigateway
+  tag: '2694'
+  pullPolicy: Always
+imagePullSecrets:
+- telematicsacrdevcin01
+service:
+  name: apigateway-deployment
+  namespace: apps
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+environment:
+  name: Development
+ingress:
+  enabled: false
+  className: nginx
+  host: ''
+  tls:
+    enabled: false
+    secretName: ''
+health:
+  enabled: false
+resources: {}
+env:
+  ASPNETCORE_ENVIRONMENT: Development

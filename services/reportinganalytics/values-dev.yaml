@@ -1,0 +1,27 @@
+replicaCount: 1
+image:
+  repository: telematicsplatform.azurecr.io/telematicsreportinganalytics
+  tag: '3544'
+  pullPolicy: Always
+imagePullSecrets:
+- telematicsacrdevcin01
+service:
+  name: reportinganalytics-deployment
+  namespace: apps
+  type: ClusterIP
+  port: 80
+  targetPort: 80
+environment:
+  name: Development
+ingress:
+  enabled: true
+  className: nginx
+  host: reportinganalytics.nueralia.ai
+  tls:
+    enabled: true
+    secretName: nueralia-dev-cert-tls
+health:
+  enabled: false
+resources: {}
+env:
+  ASPNETCORE_ENVIRONMENT: Development
