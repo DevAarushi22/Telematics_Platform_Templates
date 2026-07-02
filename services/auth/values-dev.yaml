@@ -1,13 +1,12 @@
 replicaCount: 1
 
 image:
-  repository: telematicsplatform.azurecr.io/telematicswebauth
+  repository: telematicsacrdevcin01.azurecr.io/telematicswebauth
   tag: "latest"
   pullPolicy: Always
 
 imagePullSecrets:
-  - telematicsplatform11958c78-auth
-
+  - telematicsacrdevcin01
 service:
   name: auth
   namespace: apps
@@ -29,16 +28,17 @@ environment:
   name: Development
 
 health:
-  enabled: true
-  path: /health
+  enabled: false
+  # enabled: true
+  # path: /health
 
-  liveness:
-    initialDelaySeconds: 30
-    periodSeconds: 10
+  # liveness:
+  #   initialDelaySeconds: 30
+  #   periodSeconds: 10
 
-  readiness:
-    initialDelaySeconds: 10
-    periodSeconds: 5
+  # readiness:
+  #   initialDelaySeconds: 10
+  #   periodSeconds: 5
 
 resources:
   requests:

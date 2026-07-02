@@ -1,14 +1,14 @@
 replicaCount: 1
 image:
-  repository: telematicsplatform.azurecr.io/telematicstenantmanagement
-  tag: '3481'
+  repository: telematicsacrdevcin01.azurecr.io/telematicstenantmanagement
+  tag: "latest"
   pullPolicy: Always
 imagePullSecrets:
 - telematicsacrdevcin01
 service:
-  name: tenantmanagement-deployment
+  name: tenantmanagement
   namespace: apps
-  type: ClusterIP
+
   port: 80
   targetPort: 80
 environment:
@@ -16,10 +16,11 @@ environment:
 ingress:
   enabled: true
   className: nginx
-  host: tenantmanagement.nueralia.ai
+  host: devtenantmanagement.nueralia.ai
   tls:
     enabled: true
-    secretName: nueralia-dev-cert-tls
+    # secretName: nueralia-dev-cert-tls
+    secretName: devtenantmanagement-tls
 health:
   enabled: false
 resources: {}

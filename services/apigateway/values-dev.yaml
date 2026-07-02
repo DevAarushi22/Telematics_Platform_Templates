@@ -1,14 +1,14 @@
 replicaCount: 1
 image:
-  repository: telematicsplatform.azurecr.io/telematicsapigateway
-  tag: '2694'
+  repository: telematicsacrdevcin01.azurecr.io/telematicsapigateway
+  tag: "latest"
   pullPolicy: Always
 imagePullSecrets:
 - telematicsacrdevcin01
 service:
-  name: apigateway-deployment
+  name: apigateway
   namespace: apps
-  type: ClusterIP
+
   port: 80
   targetPort: 8080
 environment:
@@ -16,10 +16,11 @@ environment:
 ingress:
   enabled: false
   className: nginx
-  host: ''
+  host: devapigateway.nueralia.ai
   tls:
     enabled: false
-    secretName: ''
+    # secretName: nueralia-dev-cert-tls
+    secretName: devapigateway-tls
 health:
   enabled: false
 resources: {}

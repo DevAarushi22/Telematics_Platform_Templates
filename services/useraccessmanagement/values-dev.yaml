@@ -1,14 +1,14 @@
 replicaCount: 1
 image:
-  repository: telematicsplatform.azurecr.io/telematicsuseraccessmanagement
-  tag: '3302'
+  repository: telematicsacrdevcin01.azurecr.io/telematicsuseraccessmanagement
+  tag: "latest"
   pullPolicy: Always
 imagePullSecrets:
 - telematicsacrdevcin01
 service:
-  name: useraccessmanagement-deployment
+  name: useraccessmanagement
   namespace: apps
-  type: ClusterIP
+
   port: 80
   targetPort: 80
 environment:
@@ -16,10 +16,11 @@ environment:
 ingress:
   enabled: true
   className: nginx
-  host: useraccessmanagement.nueralia.ai
+  host: devuseraccessmanagement.nueralia.ai
   tls:
     enabled: true
-    secretName: nueralia-dev-cert-tls
+    # secretName: nueralia-dev-cert-tls
+    secretName: devuseraccessmanagement-tls
 health:
   enabled: false
 resources: {}

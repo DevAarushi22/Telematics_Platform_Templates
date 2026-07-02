@@ -1,14 +1,14 @@
 replicaCount: 1
 image:
-  repository: telematicsplatform.azurecr.io/telematicswebsuperadmin
-  tag: '3559'
+  repository: telematicsacrdevcin01.azurecr.io/telematicswebsuperadmin
+  tag: "latest"
   pullPolicy: Always
 imagePullSecrets:
 - telematicsacrdevcin01
 service:
-  name: superadmin-deployment
+  name: superadmin
   namespace: apps
-  type: ClusterIP
+
   port: 80
   targetPort: 80
 environment:
@@ -16,10 +16,11 @@ environment:
 ingress:
   enabled: true
   className: nginx
-  host: superadmin.nueralia.ai
+  host: devsuperadmin.nueralia.ai
   tls:
     enabled: true
-    secretName: nueralia-dev-cert-tls
+    # secretName: nueralia-dev-cert-tls
+    secretName: devsuperadmin-tls
 health:
   enabled: false
 resources: {}

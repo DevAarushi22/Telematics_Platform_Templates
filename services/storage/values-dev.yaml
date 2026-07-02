@@ -1,14 +1,14 @@
 replicaCount: 1
 image:
-  repository: telematicsplatform.azurecr.io/telematicsstorage
-  tag: '2715'
+  repository: telematicsacrdevcin01.azurecr.io/telematicsstorage
+  tag: "latest"
   pullPolicy: Always
 imagePullSecrets:
 - telematicsacrdevcin01
 service:
-  name: storage-deployment
+  name: storage
   namespace: apps
-  type: ClusterIP
+
   port: 80
   targetPort: 80
 environment:
@@ -16,10 +16,11 @@ environment:
 ingress:
   enabled: true
   className: nginx
-  host: storage.nueralia.ai
+  host: devstorage.nueralia.ai
   tls:
     enabled: true
-    secretName: nueralia-dev-cert-tls
+    # secretName: nueralia-dev-cert-tls
+    secretName: devstorage-tls
 health:
   enabled: false
 resources: {}

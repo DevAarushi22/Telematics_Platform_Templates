@@ -1,14 +1,14 @@
 replicaCount: 1
 image:
-  repository: telematicsplatform.azurecr.io/telematicscachingdistributedinfrastructure
-  tag: '1511'
+  repository: telematicsacrdevcin01.azurecr.io/telematicscachingdistributedinfrastructure
+  tag: "latest"
   pullPolicy: Always
 imagePullSecrets:
 - telematicsacrdevcin01
 service:
-  name: cachingdistributedinfrastructure-deployment
+  name: cachingdistributedinfrastructure
   namespace: apps
-  type: ClusterIP
+
   port: 80
   targetPort: 80
 environment:
@@ -16,10 +16,11 @@ environment:
 ingress:
   enabled: true
   className: nginx
-  host: cachingdistributedinfrastructure.nueralia.ai
+  host: devcachingdistributedinfrastructure.nueralia.ai
   tls:
     enabled: true
-    secretName: nueralia-dev-cert-tls
+    # secretName: nueralia-dev-cert-tls
+    secretName: devcachingdistributedinfrastructure-tls
 health:
   enabled: false
 resources: {}

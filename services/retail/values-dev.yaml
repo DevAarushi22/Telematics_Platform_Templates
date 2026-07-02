@@ -1,14 +1,14 @@
 replicaCount: 1
 image:
-  repository: telematicsplatform.azurecr.io/telematicswebretail
-  tag: '3534'
+  repository: telematicsacrdevcin01.azurecr.io/telematicswebretail
+  tag: "latest"
   pullPolicy: Always
 imagePullSecrets:
 - telematicsacrdevcin01
 service:
-  name: retail-deployment
+  name: retail
   namespace: apps
-  type: ClusterIP
+
   port: 80
   targetPort: 80
 environment:
@@ -16,10 +16,12 @@ environment:
 ingress:
   enabled: true
   className: nginx
-  host: retail.nueralia.ai
+  host: devretail.nueralia.ai
   tls:
     enabled: true
-    secretName: nueralia-dev-cert-tls
+    # secretName: nueralia-dev-cert-tls
+    secretName: devretail-tls
+
 health:
   enabled: false
 resources: {}

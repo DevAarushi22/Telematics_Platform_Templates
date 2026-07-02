@@ -1,14 +1,14 @@
 replicaCount: 1
 image:
-  repository: telematicsplatform.azurecr.io/telematicsstreamingservice
-  tag: '3403'
+  repository: telematicsacrdevcin01.azurecr.io/telematicsstreamingservice
+  tag: "latest"
   pullPolicy: Always
 imagePullSecrets:
 - telematicsacrdevcin01
 service:
-  name: streaming-deployment
+  name: streaming
   namespace: apps
-  type: ClusterIP
+
   port: 80
   targetPort: 80
 environment:
@@ -16,10 +16,11 @@ environment:
 ingress:
   enabled: true
   className: nginx
-  host: streaming.nueralia.ai
+  host: devstreaming.nueralia.ai
   tls:
     enabled: true
-    secretName: nueralia-dev-cert-tls
+    # secretName: nueralia-dev-cert-tls
+    secretName: devstreaming-tls
 health:
   enabled: false
 resources: {}

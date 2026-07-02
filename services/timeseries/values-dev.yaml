@@ -1,14 +1,14 @@
 replicaCount: 1
 image:
-  repository: telematicsplatform.azurecr.io/telematicstimeseries
-  tag: '3526'
+  repository: telematicsacrdevcin01.azurecr.io/telematicstimeseries
+  tag: "latest"
   pullPolicy: Always
 imagePullSecrets:
 - telematicsacrdevcin01
 service:
-  name: timeseries-deployment
+  name: timeseries
   namespace: apps
-  type: ClusterIP
+
   port: 80
   targetPort: 80
 environment:
@@ -16,10 +16,11 @@ environment:
 ingress:
   enabled: true
   className: nginx
-  host: timeseries.nueralia.ai
+  host: devtimeseries.nueralia.ai
   tls:
     enabled: true
-    secretName: nueralia-dev-cert-tls
+    # secretName: nueralia-dev-cert-tls
+    secretName: devtimeseries-tls
 health:
   enabled: false
 resources: {}

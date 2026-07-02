@@ -1,14 +1,14 @@
 replicaCount: 1
 image:
-  repository: telematicsplatform.azurecr.io/telematicsprotocolparser
-  tag: '3583'
+  repository: telematicsacrdevcin01.azurecr.io/telematicsprotocolparser
+  tag: "latest"
   pullPolicy: Always
 imagePullSecrets:
 - telematicsacrdevcin01
 service:
-  name: protocolparser-deployment
+  name: protocolparser
   namespace: apps
-  type: ClusterIP
+
   port: 5005
   targetPort: 5005
 environment:
@@ -16,10 +16,11 @@ environment:
 ingress:
   enabled: true
   className: nginx
-  host: protocolparser.nueralia.ai
+  host: devprotocolparser.nueralia.ai
   tls:
     enabled: true
-    secretName: nueralia-dev-cert-tls
+    # secretName: nueralia-dev-cert-tls
+    secretName: devprotocolparser-tls
 health:
   enabled: false
 resources: {}

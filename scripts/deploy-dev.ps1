@@ -41,7 +41,6 @@ Write-Host "====================================="
 Write-Host ""
 
 kubectl rollout status deployment/auth `
-    -n apps `
     --timeout=300s
 
 Write-Host ""

@@ -1,14 +1,14 @@
 replicaCount: 1
 image:
-  repository: telematicsplatform.azurecr.io/telematicsfeaturelicensing
-  tag: '1476'
+  repository: telematicsacrdevcin01.azurecr.io/telematicsfeaturelicensing
+  tag: "latest"
   pullPolicy: Always
 imagePullSecrets:
 - telematicsacrdevcin01
 service:
-  name: featurelicensing-deployment
+  name: featurelicensing
   namespace: apps
-  type: ClusterIP
+
   port: 80
   targetPort: 80
 environment:
@@ -16,10 +16,11 @@ environment:
 ingress:
   enabled: true
   className: nginx
-  host: featurelicensing.nueralia.ai
+  host: devfeaturelicensing.nueralia.ai
   tls:
     enabled: true
-    secretName: nueralia-dev-cert-tls
+    # secretName: nueralia-dev-cert-tls
+    secretName: devfeaturelicensing-tls 
 health:
   enabled: false
 resources: {}

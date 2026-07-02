@@ -1,14 +1,14 @@
 replicaCount: 1
 image:
-  repository: telematicsplatform.azurecr.io/telematicsworkflowmanagement
-  tag: '1474'
+  repository: telematicsacrdevcin01.azurecr.io/telematicsworkflowmanagement
+  tag: "latest"
   pullPolicy: Always
 imagePullSecrets:
 - telematicsacrdevcin01
 service:
-  name: workflowmanagement-deployment
+  name: workflowmanagement
   namespace: apps
-  type: ClusterIP
+
   port: 80
   targetPort: 80
 environment:
@@ -16,10 +16,11 @@ environment:
 ingress:
   enabled: true
   className: nginx
-  host: workflowmanagement.nueralia.ai
+  host: devworkflowmanagement.nueralia.ai
   tls:
     enabled: true
-    secretName: nueralia-dev-cert-tls
+    # secretName: nueralia-dev-cert-tls
+    secretName: devworkflowmanagement-tls
 health:
   enabled: false
 resources: {}

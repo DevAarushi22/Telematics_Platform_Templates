@@ -1,14 +1,14 @@
 replicaCount: 1
 image:
-  repository: telematicsplatform.azurecr.io/telematicsrouteoptimization
-  tag: '1486'
+  repository: telematicsacrdevcin01.azurecr.io/telematicsrouteoptimization
+  tag: "latest"
   pullPolicy: Always
 imagePullSecrets:
 - telematicsacrdevcin01
 service:
-  name: routeoptimization-deployment
+  name: routeoptimization
   namespace: apps
-  type: ClusterIP
+
   port: 80
   targetPort: 80
 environment:
@@ -16,10 +16,11 @@ environment:
 ingress:
   enabled: true
   className: nginx
-  host: routeoptimization.nueralia.ai
+  host: devrouteoptimization.nueralia.ai
   tls:
     enabled: true
-    secretName: nueralia-dev-cert-tls
+    # secretName: nueralia-dev-cert-tls
+    secretName: devrouteoptimization-tls
 health:
   enabled: false
 resources: {}

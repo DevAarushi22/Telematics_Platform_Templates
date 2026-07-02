@@ -1,14 +1,14 @@
 replicaCount: 1
 image:
-  repository: telematicsplatform.azurecr.io/telematicsvehiclemanagement
-  tag: '3557'
+  repository: telematicsacrdevcin01.azurecr.io/telematicsvehiclemanagement
+  tag: "latest"
   pullPolicy: Always
 imagePullSecrets:
 - telematicsacrdevcin01
 service:
-  name: vehiclemanagement-deployment
+  name: vehiclemanagement
   namespace: apps
-  type: ClusterIP
+
   port: 80
   targetPort: 80
 environment:
@@ -16,10 +16,11 @@ environment:
 ingress:
   enabled: true
   className: nginx
-  host: vehiclemanagement.nueralia.ai
+  host: devvehiclemanagement.nueralia.ai
   tls:
     enabled: true
-    secretName: nueralia-dev-cert-tls
+    # secretName: nueralia-dev-cert-tls
+    secretName: devvehiclemanagement-tls
 health:
   enabled: false
 resources: {}
