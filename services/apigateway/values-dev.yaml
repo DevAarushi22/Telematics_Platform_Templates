@@ -14,7 +14,7 @@ service:
 environment:
   name: Development
 ingress:
-  enabled: false
+  enabled: true
   className: nginx
   host: devapigateway.nueralia.ai
   tls:
