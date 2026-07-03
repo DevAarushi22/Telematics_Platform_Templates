@@ -10,7 +10,7 @@ service:
   namespace: apps
 
   port: 80
-  targetPort: 80
+  targetPort: 3004
 environment:
   name: Development
 ingress:
