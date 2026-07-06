@@ -1,0 +1,28 @@
+replicaCount: 1
+image:
+  repository: telematicsacrstgcin01.azurecr.io/telematicsrouteoptimization
+  tag: "latest"
+  pullPolicy: Always
+imagePullSecrets:
+- telematicsacrstgcin01
+service:
+  name: routeoptimization
+  namespace: apps
+
+  port: 80
+  targetPort: 8080
+environment:
+  name: Stage
+ingress:
+  enabled: true
+  className: nginx
+  host: stagerouteoptimization.nueralia.ai
+  tls:
+    enabled: true
+    # secretName: nueralia-stage-cert-tls
+    secretName: stagerouteoptimization-tls
+health:
+  enabled: false
+resources: {}
+env:
+  ASPNETCORE_ENVIRONMENT: Stage

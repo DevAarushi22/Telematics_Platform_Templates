@@ -1,12 +1,12 @@
 replicaCount: 1
 
 image:
-  repository: telematicsacrdevcin01.azurecr.io/telematicswebauth
+  repository: telematicsacrstgcin01.azurecr.io/telematicswebauth
   tag: "latest"
   pullPolicy: Always
 
 imagePullSecrets:
-  - telematicsplatform11958c78-auth
+  - telematicsacrstgcin01
 
 service:
   name: auth

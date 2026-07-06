@@ -1,0 +1,34 @@
+replicaCount: 1
+image:
+  repository: telematicsacrstgcin01.azurecr.io/telematicsstreamingservice
+  tag: "latest"
+  pullPolicy: Always
+imagePullSecrets:
+- telematicsacrstgcin01
+service:
+  name: streaming
+  namespace: apps
+
+  port: 80
+  targetPort: 8080
+environment:
+  name: Stage
+ingress:
+  enabled: true
+  className: nginx
+  host: stagestreaming.nueralia.ai
+  tls:
+    enabled: true
+    # secretName: nueralia-stage-cert-tls
+    secretName: stagestreaming-tls
+health:
+  enabled: false
+resources: {}
+env:
+  ASPNETCORE_ENVIRONMENT: Stage
+redis:
+  enabled: true
+  host: redis-master.redis.svc.cluster.local
+  port: 6379
+  secretName: redis-auth
+  passwordKey: redis-password

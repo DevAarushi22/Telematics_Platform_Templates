@@ -1,0 +1,27 @@
+replicaCount: 1
+image:
+  repository: telematicsacrstgcin01.azurecr.io/telematicswebsuperadmin
+  tag: "latest"
+  pullPolicy: Always
+imagePullSecrets:
+- telematicsacrstgcin01
+service:
+  name: superadmin
+  namespace: apps
+
+  port: 80
+  targetPort: 3002
+environment:
+  name: Stage
+ingress:
+  enabled: true
+  className: nginx
+  host: stagesuperadmin.nueralia.ai
+  tls:
+    enabled: true
+    # secretName: nueralia-stage-cert-tls
+    secretName: stagesuperadmin-tls
+health:
+  enabled: false
+resources: {}
+env: {}
