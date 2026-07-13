@@ -1,7 +1,7 @@
 #deploying all the microservices in the services folder using helm and kubectl
 $services = @(
 "apigateway",
-# "auth",
+"auth",
 "cachingdistributedinfrastructure",
 "featurelicensing",
 "inventorymanagement",
