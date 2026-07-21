@@ -13,6 +13,14 @@ service:
   targetPort: 5005
 environment:
   name: Development
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+
+  limits:
+    cpu: 500m
+    memory: 512Mi
 ingress:
   enabled: true
   className: nginx
@@ -26,3 +34,9 @@ health:
 resources: {}
 env:
   ASPNETCORE_ENVIRONMENT: Development
+redis:
+  enabled: true
+  host: redis-master.redis.svc.cluster.local
+  port: 6379
+  secretName: redis-auth
+  passwordKey: redis-password
