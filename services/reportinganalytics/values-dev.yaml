@@ -1,16 +1,19 @@
 replicaCount: 1
+
 image:
   repository: telematicsacrdevcin01.azurecr.io/telematicsreportinganalytics
   tag: "latest"
   pullPolicy: Always
+
 imagePullSecrets:
-- telematicsacrdevcin01
+  - name: telematicsacrdevcin01
+
 service:
   name: reportinganalytics
   namespace: apps
-
   port: 80
   targetPort: 8080
+
 environment:
   name: Development
 
@@ -18,21 +21,20 @@ resources:
   requests:
     cpu: 100m
     memory: 256Mi
-
   limits:
     cpu: 500m
-    memory: 512Mi
-    
+    memory: 1Gi   # Increased from 512Mi to prevent OOMKilled
+
 ingress:
   enabled: true
   className: nginx
   host: devreportinganalytics.nueralia.ai
   tls:
     enabled: true
-    # secretName: nueralia-dev-cert-tls
     secretName: devreportinganalytics-tls
+
 health:
   enabled: false
-resources: {}
+
 env:
   ASPNETCORE_ENVIRONMENT: Development
