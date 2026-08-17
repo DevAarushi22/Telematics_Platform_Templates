@@ -13,6 +13,13 @@ service:
   targetPort: 8080
 environment:
   name: Stage
+resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
+  limits:
+    cpu: 250m
+    memory: 512Mi  # Increased from 512Mi to prevent OOMKilled
 ingress:
   enabled: true
   className: nginx
