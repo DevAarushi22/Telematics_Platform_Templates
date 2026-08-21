@@ -30,7 +30,6 @@ ingress:
     secretName: stagereportinganalytics-tls
 health:
   enabled: false
-resources: {}
 env:
   ASPNETCORE_ENVIRONMENT: Stage
 redis:
