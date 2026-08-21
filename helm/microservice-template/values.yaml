@@ -6,6 +6,15 @@ image:
   tag: latest
   pullPolicy: Always
 
+replicaCount: 1
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 2
+  targetCPUUtilizationPercentage: 90
+  targetMemoryUtilizationPercentage: 90
+
 service:
   name: ""
   namespace: apps
