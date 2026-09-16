@@ -10,7 +10,7 @@ service:
   namespace: apps
 
   port: 80
-  targetPort: 8080
+  targetPort: 5087
 environment:
   name: Stage
 ingress:
